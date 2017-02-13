@@ -91,6 +91,7 @@
 (defun play-sample (sample)
   (sdl-mixer:play-sample sample))
 ;; -----------------------------------------------------------------------------------------------
+#|
 (defun Stage-start-message (stage keystate)            ; stage start message
   "Draw stage start message and set game parameters"
   (when (eql (stage-flag stage) t)
@@ -113,6 +114,32 @@
          (format nil "S T A G E  ~d" (stage-number stage)) 272 208 :color sdl:*white* :font *menu-font*)
     (sdl:update-display)
     (sleep 3)))
+|#
+
+;; ---------------------------------------------------------------------------------------------
+;;フォント設定
+(defparameter *path-font16* "./font/mplus-1mn-regular.ttf")
+(defparameter *font16* (make-instance 'sdl:ttf-font-definition
+                                :size 16
+                                :filename (sdl:create-path *path-font16*)))
+(defvar *menu-font*)                          ; menu font
+;;(defparameter *path-font80* "./font/Pacifico.ttf")
+(defparameter *font80* (make-instance 'sdl:ttf-font-definition
+                                :size 80
+                                :filename (sdl:create-path *path-font16*)))
+(defvar *title-font*)                          ; menu font
+(defparameter *font60* (make-instance 'sdl:ttf-font-definition
+                                :size 60
+                                :filename (sdl:create-path *path-font16*)))
+(defvar *60-font*)                          ; menu font
+
+
+
+(defun Set-font ()
+  (setf *menu-font*  (sdl:initialise-font *font16*)
+        *title-font* (sdl:initialise-font *font80*)
+        *60-font* (sdl:initialise-font *font60*)))
+
 
 ;; -----------------------------------------------------------------------------------------------
 
@@ -146,7 +173,7 @@
   ;;(Stop-sound)                                                     ; stop ending BGM if playing
  ; title
 
-  (sdl:draw-string-solid-* "G A C H A P I N" 120 100 :color sdl:*white* :font *title-font*) ; show menu
+  (sdl:draw-string-solid-* "ガ チ ャ ピ ン" 120 100 :color sdl:*white* :font *title-font*) ; show menu
  ; memu
   (sdl:draw-string-solid-* "S T A R T" 374 328 :color sdl:*white* :font *menu-font*) ; show menu
   (sdl:draw-string-solid-* "E X I T" 374 360 :color sdl:*white* :font *menu-font*)
@@ -190,29 +217,7 @@
         ((sdl:key= key :SDL-KEY-Z)      (setf (z      keystate) boolean))
         ((sdl:key= key :SDL-KEY-LSHIFT) (setf (lshift keystate) boolean))))
 
-;; ---------------------------------------------------------------------------------------------
-;;フォント設定
-(defparameter *path-font16* "/home/aria/opt/Myrica/Myrica.TTC")
-(defparameter *font16* (make-instance 'sdl:ttf-font-definition
-                                :size 16
-                                :filename (sdl:create-path *path-font16*)))
-(defvar *menu-font*)                          ; menu font
-(defparameter *path-font80* "/home/aria/opt/Myrica/Myrica.TTC")
-(defparameter *font80* (make-instance 'sdl:ttf-font-definition
-                                :size 80
-                                :filename (sdl:create-path *path-font16*)))
-(defvar *title-font*)                          ; menu font
-(defparameter *font60* (make-instance 'sdl:ttf-font-definition
-                                :size 60
-                                :filename (sdl:create-path *path-font16*)))
-(defvar *60-font*)                          ; menu font
 
-
-
-(defun Set-font ()
-  (setf *menu-font*  (sdl:initialise-font *font16*)
-        *title-font* (sdl:initialise-font *font80*)
-        *60-font* (sdl:initialise-font *font60*)))
 ;; ----------------------------------------------------------------------------
 (defvar *mukku32*)
 (defvar *mukku-boss*)
@@ -1013,7 +1018,7 @@
          (gpin-p (make-instance
                  'entity
                  :id *gpin32-p* :width 32 :height 32
-                 :x (random *gamen-w*) :y (random *gamen-h*) :dx 1 :dy 1 :hp 150
+                 :x (random *gamen-w*) :y (random *gamen-h*) :dx 1 :dy 1 :hp 50
                  :dir (random 4) :dir-time (+ 100 (random 80))))
          (game-field (make-instance 'game-field :field-x 0 :field-y 0 
                                     :width *gamen-w* :height *gamen-h*)))
