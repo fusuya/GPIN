@@ -11,3 +11,6 @@ libsdl-ttf2.0-dev
 ubuntuだと
 sudo apt install libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev
 でインストールできると思います。
+
+フォントにM+ FONTSを使わせてもらってます。
+http://mplus-fonts.osdn.jp/about.html
