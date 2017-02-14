@@ -173,7 +173,7 @@
   ;;(Stop-sound)                                                     ; stop ending BGM if playing
  ; title
 
-  (sdl:draw-string-solid-* "ガ チ ャ ピ ン" 120 100 :color sdl:*white* :font *title-font*) ; show menu
+  (sdl:draw-string-solid-* "Gピン vs Mック" 120 100 :color sdl:*white* :font *title-font*) ; show menu
  ; memu
   (sdl:draw-string-solid-* "S T A R T" 374 328 :color sdl:*white* :font *menu-font*) ; show menu
   (sdl:draw-string-solid-* "E X I T" 374 360 :color sdl:*white* :font *menu-font*)
